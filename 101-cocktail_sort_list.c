@@ -62,7 +62,8 @@ void cocktail_sort_list(listint_t **list)
 			if (current->next == NULL)
 				tail = current;
 		}
-		swapped = 0;
+		if (!swapped)
+			break;
 		while (tail->prev != NULL)
 		{
 			if (tail->prev->n > tail->n)
