@@ -1,91 +1,47 @@
 #include "sort.h"
 
 /**
- * swap_nodes - swap linked list nodes
- * @a: first node
- * @b: second node
- * 
+ * insertion_sort_list - insertion sort on doubly linked list
+ * @list: double pointer to list head
+ *
  * Return: void
-*/
-void swap_nodes(listint_t *list_head, listint_t *a, listint_t *b)
-{
-	listint_t *temp;
-	listint_t *head;
-	listint_t *tail;
-	listint_t temp_i;
-	
-	temp_i = list_head;
-	head = malloc(sizeof(listint_t));
-	tail = malloc(sizeof(listint_t));
-	
-
-	head = list_head;
-
-	while(temp_i != NULL)
-	{
-		temp_i = temp_i->next;
-	}
-	
-
-	while
-
-	if(a->prev != NULL)
-	{
-		a->prev->next = b;
-	}
-
-	if(b->next != NULL)
-	{
-		b->next->prev = a;
-	}
-
-	temp = malloc(sizeof(listint_t));
-
-	temp->prev = a->prev;
-	temp->next = a->next;
-
-	a->next = b->next;
-	a->prev = b->prev;
-
-	b->next = temp->next;
-	b->prev = temp->prev;
-
-	if(head == a)
-		head = b;
-	else if (head = b)
-		head = a;
-
-	if (tail = a)
-		tail = b;
-	else if (tail = b)
-		tail = a;
-
-	
-}
-
-/**
- * insertion_sort_list - insertion sort
- * @list: double pointer to head node
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *temp;
 	listint_t *current;
-	
-	if((*list)->next == NULL || *list == NULL)
+
+	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
-	
 	current = (*list)->next;
 
-	while(current != NULL)
+	while (current)
 	{
-		temp = current;
-
-		while(temp->prev != NULL && temp->prev->n > temp->n)
+		while (current->prev && current->n < current->prev->n)
 		{
-			swap_nodes((*list), temp->prev, temp);
-			temp = temp->prev;
+			/* temp node to hold current */
+			listint_t *temp = current;
+			/* adjust adjacent links to current */
+			if (temp->next)
+				temp->next->prev = current->prev;
+			temp->prev->next = current->next;
+			/* change current to previous node */
+			current = current->prev;
+			/*adjust temp node to point to previous current */
+			temp->next = current;
+			temp->prev = temp->prev->prev;
+			/* point back current, which is now move behind to temp */
+			current->prev = temp;
+			/* adjust temp prev */
+			if (temp->prev)
+				temp->prev->next = temp;
+			/* adjust head node */
+			if (temp->prev == NULL)
+				(*list) = temp;
+			/* print list */
+			print_list(*list);
+			/* move back list */
+			current = current->prev;
 		}
-		current = temp->next;
+		current = current->next;
 	}
 }
