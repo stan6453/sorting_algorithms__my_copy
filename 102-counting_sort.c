@@ -15,8 +15,6 @@ void counting_sort(int *array, size_t size)
 	int *sort_arr;
 	int cum = 0;
 
-	if(array == NULL)
-		return;
 	max = array[0];
 	for (i = 1; i < size; i++) /*find max munber*/
 		if ((size_t)array[i] > max)
