@@ -13,17 +13,20 @@
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t j;
-	int temp, gap, bIndex;
+	size_t j, gap;
+	int temp, bIndex;
 
-	gap = 4;
+	gap = 1;
+	while (gap <=  (size / 3))
+		gap = gap * 3 + 1;
+
 	while (gap > 0)
 	{
 		bIndex = gap;
 		j = bIndex;
 		while (j < size)
 		{
-			while (bIndex - gap >= 0 && array[bIndex] < array[bIndex - gap])
+			while ((int) (bIndex - gap) >= 0 && array[bIndex] < array[bIndex - gap])
 			{
 				temp = array[bIndex];
 				array[bIndex] = array[bIndex - gap];
@@ -33,7 +36,7 @@ void shell_sort(int *array, size_t size)
 			bIndex = j + 1;
 			j = bIndex;
 		}
-		gap = (int)(gap / 3);
+		gap = (int)((gap - 1) / 3);
 		print_array(array, size);
 		j = 0;
 	}
