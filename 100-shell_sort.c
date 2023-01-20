@@ -33,7 +33,7 @@ void shell_sort(int *array, size_t size)
 			bIndex = j + 1;
 			j = bIndex;
 		}
-		gap = (int)(gap / 4);
+		gap = (int)(gap / 3);
 		print_array(array, size);
 		j = 0;
 	}
