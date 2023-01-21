@@ -10,3 +10,4 @@ select
 bubble*
 counting*
 .gitignore
+*.swp
