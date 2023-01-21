@@ -68,6 +68,8 @@ void bitonic_merge(int *array, int lowIndex, int count, int direction)
 			temp = array[i];
 			array[i] = array[i + k];
 			array[i + k] = temp;	
+			printf("Merging [%d/%d] %d:\n", k, count, direction);
+			print_array(array, count);
 		}
 	}
 
