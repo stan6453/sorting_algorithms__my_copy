@@ -21,7 +21,8 @@ void my_counting_sort(int arr[], int n, int exp)
 	}
 
 	count = malloc(sizeof(int) * (max + 1));
-
+	if (!count || !output)
+		exit(0);
 	/* populate count array with zeros */
 	for (i = 0; i <= max; i++)
 		count[i] = 0;
