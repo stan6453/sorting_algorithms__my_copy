@@ -10,6 +10,7 @@ select
 bubble*
 counting*
 .gitignore
+*main.c
 *.swp
 my_text
 test_merge
