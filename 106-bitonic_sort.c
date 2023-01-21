@@ -2,6 +2,7 @@
 
 
 void sort_bitonic(int array[], int lowIndex, int count, int direction);
+void bitonic_merge(int *array, int lowIndex, int count, int direction);
 /**
  * bitonic_sort - sorts an array of integers in ascending order using the Bitonic sort algorithm
  * @array: array to be sorted
@@ -27,12 +28,13 @@ void sort_bitonic(int array[], int lowIndex, int count, int direction)
 	int k;
 
 	if (count == 1)
-		return array[lowIndex];
+		return;
 	
 	k = count / 2;
 	sort_bitonic(array, lowIndex, k, 1);
 	sort_bitonic(array, lowIndex + k, k, 0);
 
+	
 	bitonic_merge(array, lowIndex, count, direction);
 
 }
@@ -52,7 +54,7 @@ void bitonic_merge(int *array, int lowIndex, int count, int direction)
 	int k, i, temp;
 
 	if (count == 1)
-		//break the recursion
+		return;
 	
 	k = count / 2;
 	for (i = lowIndex; i < lowIndex + k; i++)
@@ -62,8 +64,12 @@ void bitonic_merge(int *array, int lowIndex, int count, int direction)
 			temp = array[i];
 			array[i] = array[i + k];
 			array[i + k] = temp;
+
+			printf("Merging [%d/%d] %d:\n", k, count, direction);
+			print_array(array, count);
 		}
 	}
+
 	bitonic_merge(array, lowIndex, k, direction);
 	bitonic_merge(array, lowIndex + k, k, direction);
 }
