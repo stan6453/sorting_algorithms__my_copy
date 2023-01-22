@@ -15,7 +15,7 @@ void heap_sort(int *array, size_t size)
 	int maxsize;
 
 	int temp __attribute__((unused));
-	
+
 	maxsize = size;
 	for (i = size / 2 - 1; i >= 0; i--)
 		maxHeapify(array, size, i, maxsize);
