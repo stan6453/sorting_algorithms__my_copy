@@ -12,10 +12,10 @@ void maxHeapify(int array[], int size, int index, int maxsize);
 void heap_sort(int *array, size_t size)
 {
 	int i;
-	int temp;
 	int maxsize;
 
-	temp __attribute__((unused));
+	int temp __attribute__((unused));
+	
 	maxsize = size;
 	for (i = size / 2 - 1; i >= 0; i--)
 		maxHeapify(array, size, i, maxsize);
