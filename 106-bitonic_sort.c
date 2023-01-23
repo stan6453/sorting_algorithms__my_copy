@@ -39,7 +39,7 @@ void sort_bitonic(int array[], int lowIndex,
 
 	k = count / 2;
 
-	printf("Merging [%d/%d] (%s):\n", k, maxsize, direction ? "UP" : "DOWN");
+	printf("Merging [%d/%d] (%s):\n", count, maxsize, direction ? "UP" : "DOWN");
 	print_array(array + lowIndex, count);
 
 	sort_bitonic(array, lowIndex, k, maxsize, 1);
@@ -47,7 +47,7 @@ void sort_bitonic(int array[], int lowIndex,
 
 	bitonic_merge(array, lowIndex, count, direction);
 
-	printf("Merging [%d/%d] (%s):\n", k, maxsize, direction ? "UP" : "DOWN");
+	printf("Result [%d/%d] (%s):\n", count, maxsize, direction ? "UP" : "DOWN");
 	print_array(array + lowIndex, count);
 }
 
