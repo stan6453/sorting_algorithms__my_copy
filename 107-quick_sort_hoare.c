@@ -56,6 +56,7 @@ int partition(int *array, int start, int end, size_t whole_size)
 	int temp = 0;
 	int pivot, pivot_index;
 
+
 	if (array[start] > array[end])
 	{
 		temp = array[start];
@@ -65,9 +66,11 @@ int partition(int *array, int start, int end, size_t whole_size)
 		print_array(array, whole_size);
 	}
 
+
 	pivot = array[start];
 	pivot_index = start;
 
+	start = start + 1;
 	while (start < end)
 	{
 		while (array[start] <= pivot)
