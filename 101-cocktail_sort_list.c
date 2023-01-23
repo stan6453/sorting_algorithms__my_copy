@@ -38,10 +38,13 @@ void swapNodes(listint_t *left_node, listint_t *right_node, listint_t **head)
 void cocktail_sort_list(listint_t **list)
 {
 	int swapped = 1;
-	listint_t *current = *list, *tail = NULL;
+	listint_t *current, *tail;
 
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
+
+	current = *list, tail = NULL;
+
 	while (swapped)
 	{
 		swapped = 0;
