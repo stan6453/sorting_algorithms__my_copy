@@ -12,6 +12,8 @@ void bitonic_merge(int *array,
  */
 void bitonic_sort(int *array, size_t size)
 {
+	if (array == NULL)
+		return;
 	sort_bitonic(array, 0, size, size, 1);
 }
 
