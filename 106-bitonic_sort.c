@@ -24,6 +24,7 @@ void bitonic_sort(int *array, size_t size)
  * array -or subarray- that we are working with
  * @count: the number of elements in the
  * array -or subarray- that we are working with
+ * @maxsize: maximum size of the array
  * @direction: determines if we are to
  * sort the list in ascending or descending order:
  *	1: sort in ascending order
