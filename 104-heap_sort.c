@@ -1,62 +1,69 @@
 #include "sort.h"
 
 
+void maxHeapify(int array[], int size, int index, int maxsize);
+
 /**
- * heap_sort - sorts an array of integers in ascending order using the Heap sort algorithm
+ * heap_sort - sorts an array of
+ * integers in ascending order using the Heap sort algorithm
  * @array: array to be sorted
  * @size: size of the array
  */
 void heap_sort(int *array, size_t size)
 {
-	int i, temp, pindex, lchild, rchild,  bindex, compchild;
-	/*size_t realSize = size;*/
+	int i;
+	int maxsize;
 
-	for (i = size - 1; i >= 0; i--)
+	int temp __attribute__((unused));
+
+	maxsize = size;
+	for (i = size / 2 - 1; i >= 0; i--)
+		maxHeapify(array, size, i, maxsize);
+
+	for (i = size - 1; i > 0; i--)
 	{
+		/*swap last element with first element*/
+		temp = array[i];
+		array[i] = array[0];
+		array[0] = temp;
 
-		if ((size_t)(i * 2 + 1) > size)/*if node deos not have a child  within our heap, skip*/
-			continue;
+		print_array(array, maxsize);
 
-		pindex = i;
-		lchild = i * 2 + 1;
-		rchild = i * 2 + 2;/*beore uisng, chech is it points outside the Size*/
+		maxHeapify(array, i, 0, maxsize);
 
-		while (array[pindex] < array[lchild] || array[pindex] < array[rchild])
-		{
-			if (array[pindex] < array[lchild])
-			{
-				bindex = pindex;
-				compchild = lchild;
-				while(bindex >= 0 && array[bindex] < array[compchild])
-				{
-					temp = array[bindex];
-					array[bindex] = array[compchild];
-					array[compchild] = temp;
-					compchild = bindex;
-					if (bindex % 2)
-						bindex = bindex / 2;
-					else
-						bindex = (bindex / 2) - 1;
-				}
-			}
-			else if ((size_t)rchild <= size && array[pindex] < array[rchild])
-			{
-				bindex = pindex;
-				compchild = rchild;
-				while(bindex >= 0 && array[bindex] < array[compchild])
-				{
-					temp = array[bindex];
-					array[bindex] = array[compchild];
-					array[compchild] = temp;
-					compchild = bindex;
-					if (bindex % 2)
-						bindex = bindex / 2;
-					else
-						bindex = (bindex / 2) - 1;
-				}
-			}
-			printf("somewhere inbetween:");
-			print_array(array, size);
-		}
+	}
+}
+
+/**
+ * maxHeapify - makes sure the node we are pointing to
+ * satistfies the conditions of a maximum heap
+ * @array: array to heapify
+ * @size: size of the heap (this will reduce as we a
+ * heap and a sorted section of the array)
+ * @index: index to heapify from
+ * @maxsize: total size of the array
+ *	(size of heap section + size of sorted part of the array)
+ */
+void maxHeapify(int array[], int size, int index, int maxsize)
+{
+	int temp __attribute__((unused)) = 0;
+	int lIndex = index * 2 + 1;
+	int rIndex = index * 2 + 2;
+	int largest = index;
+
+	if (lIndex < size && array[lIndex] > array[largest])
+		largest = lIndex;
+	if (rIndex < size && array[rIndex] > array[largest])
+		largest = rIndex;
+
+	if (largest != index)
+	{
+		temp = array[index];
+		array[index] = array[largest];
+		array[largest] = temp;
+
+		print_array(array, maxsize);
+
+		maxHeapify(array, size, largest, maxsize);
 	}
 }
