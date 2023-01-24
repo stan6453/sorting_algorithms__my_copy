@@ -1,13 +1,15 @@
 #ifndef _deck_
 #define _deck_
 
+#include <string.h>
+
 /**
- * struct card_e - Playing card ranks
+ * enum kind_e - Playing card ranks
  *
- * @SPADE: Value of the card
- * @HEART: 
- * @CLUB:
- * @kind: Kind of the card
+ * @SPADE: Value of the spade suit
+ * @HEART: Value of the heart suit
+ * @CLUB:  Value of the club suit
+ * @DIAMOND:  Value of the diamond suit
  */
 typedef enum kind_e
 {
@@ -43,4 +45,11 @@ typedef struct deck_node_s
 	struct deck_node_s *prev;
 	struct deck_node_s *next;
 } deck_node_t;
+
+void sort_deck(deck_node_t **deck);
+void cocktail_sort_list_value(deck_node_t **list);
+void cocktail_sort_list_suit(deck_node_t **list);
+void swapNodes(deck_node_t *left_node,
+		deck_node_t *right_node, deck_node_t **head);
+int get_rank(const char *value);
 #endif
