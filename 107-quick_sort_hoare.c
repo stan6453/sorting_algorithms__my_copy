@@ -37,7 +37,7 @@ void my_quick_sort(int *array, int start, int end, size_t whole_size)
 	{
 		int partition_index = partition(array, start, end, whole_size);
 
-		my_quick_sort(array, start, partition_index - 1, whole_size);
+		my_quick_sort(array, start, partition_index, whole_size);
 
 		my_quick_sort(array, partition_index + 1, end, whole_size);
 	}
@@ -55,21 +55,24 @@ void my_quick_sort(int *array, int start, int end, size_t whole_size)
 int partition(int *array, int low, int high, size_t whole_size)
 {
 	int pivot = array[high];
-	int i = low;
-	int j = high;
+	int i = low - 1;
+	int j = high + 1;
 
 	while (1)
 	{
-		while (array[i] < pivot)
+		do {
 			i++;
+		} while (array[i] < pivot);
 
-		while (array[j] > pivot)
+		do {
 			j--;
+		} while (array[j] > pivot);
 
-		if (i >= j)
+		if (i > j)
+		{
 			return (j);
-
-		if (array[i] != array[j])
+		}
+		if (array[i] > array[j])
 		{
 			swap(&array[i], &array[j]);
 			print_array(array, whole_size);
@@ -87,6 +90,7 @@ int partition(int *array, int low, int high, size_t whole_size)
 void swap(int *a, int *b)
 {
 	int temp = *a;
+
 	*a = *b;
 	*b = temp;
 }
