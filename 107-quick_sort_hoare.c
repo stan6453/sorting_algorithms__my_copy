@@ -2,6 +2,7 @@
 
 void my_quick_sort(int *array, int start, int end, size_t whole_size);
 int partition(int *array, int start, int end, size_t whole_size);
+void swap(int *a, int *b);
 
 /**
  * quick_sort_hoare - quick sort
@@ -45,55 +46,47 @@ void my_quick_sort(int *array, int start, int end, size_t whole_size)
 /**
  * partition - hoare's partition
  * @array: array
- * @start: start
- * @end: end
+ * @low: start
+ * @high: end
  * @whole_size: whole size
  *
  * Return: partition index
  */
-int partition(int *array, int start, int end, size_t whole_size)
+int partition(int *array, int low, int high, size_t whole_size)
 {
-	int temp = 0;
-	int pivot, pivot_index;
+	int pivot = array[high];
+	int i = low;
+	int j = high;
 
-	if (array[start] > array[end])
+	while (1)
 	{
-		temp = array[start];
-		array[start] = array[end];
-		array[end] = temp;
+		while (array[i] < pivot)
+			i++;
 
-		print_array(array, whole_size);
-	}
+		while (array[j] > pivot)
+			j--;
 
-	pivot = array[start];
-	pivot_index = start;
+		if (i >= j)
+			return (j);
 
-	while (start < end)
-	{
-		while (array[start] <= pivot)
-			start++;
-		while (array[end] > pivot)
-			end--;
-
-		if (start < end)
+		if (array[i] != array[j])
 		{
-			if (array[start] != array[end])
-			{
-				temp = array[start];
-				array[start] = array[end];
-				array[end] = temp;
-				print_array(array, whole_size);
-			}
+			swap(&array[i], &array[j]);
+			print_array(array, whole_size);
 		}
 	}
+}
 
-	if (array[end] != array[pivot_index])
-	{
-		temp = array[end];
-		array[end] = array[pivot_index];
-		array[pivot_index] = temp;
-		print_array(array, whole_size);
-	}
-
-	return (end);
+/**
+ * swap - swap values
+ * @a: value a
+ * @b: value b
+ *
+ * Return: void
+ */
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
