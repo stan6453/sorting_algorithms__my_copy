@@ -60,11 +60,13 @@ int partition(int *array, int low, int high, size_t whole_size)
 
 	while (1)
 	{
-		do {
+		do
+		{
 			i++;
 		} while (array[i] < pivot);
 
-		do {
+		do
+		{
 			j--;
 		} while (array[j] > pivot);
 
@@ -72,7 +74,7 @@ int partition(int *array, int low, int high, size_t whole_size)
 		{
 			return (j);
 		}
-		if (array[i] > array[j])
+		if (i < j)
 		{
 			swap(&array[i], &array[j]);
 			print_array(array, whole_size);
